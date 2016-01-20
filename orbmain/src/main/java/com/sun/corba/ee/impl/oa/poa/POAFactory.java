@@ -16,6 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016] [C2B2 Consulting Limited]
 
 package com.sun.corba.ee.impl.oa.poa ;
 
@@ -180,7 +181,9 @@ public class POAFactory implements ObjectAdapterFactory
             NullaryFunction.Factory.makeConstant( 
                 (org.omg.CORBA.Object)poaCurrent ) ) ;
         this.mom = orb.mom() ;
-        mom.registerAtRoot( this ) ;
+        if (mom != null) {
+            mom.registerAtRoot( this ) ;
+        }
     }
 
     public ObjectAdapter find( ObjectAdapterId oaid )

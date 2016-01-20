@@ -16,6 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016] [C2B2 Consulting Limited]
 
 package com.sun.corba.ee.impl.oa.poa;
 
@@ -316,7 +317,9 @@ public class POAImpl extends ObjectAdapterBase implements POA
 
     @Poa
     private static void registerMBean( ORB orb, Object obj ) {
-        orb.mom().register( getPOAFactory( orb ), obj ) ;
+        if (orb.mom() != null) {
+            orb.mom().register( getPOAFactory( orb ), obj ) ;
+        }
     }
 
     // package private so that POAFactory can access it.
