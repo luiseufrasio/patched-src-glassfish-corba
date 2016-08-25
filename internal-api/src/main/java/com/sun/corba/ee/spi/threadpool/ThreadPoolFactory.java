@@ -16,10 +16,11 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016] [Payara Foundation and/or its affiliates]
 
 package com.sun.corba.ee.spi.threadpool;
 
-import com.sun.corba.ee.impl.threadpool.ThreadPoolImpl ;
+import com.sun.corba.ee.impl.threadpool.ThreadPoolImpl;
 
 public class ThreadPoolFactory {
     /** Create an unbounded thread pool in the current thread group
@@ -65,6 +66,6 @@ public class ThreadPoolFactory {
         String threadpoolName, ClassLoader defaultClassLoader ) 
     {
         return new ThreadPoolImpl( minSize, maxSize, timeout,
-            threadpoolName, defaultClassLoader ) ;
+            threadpoolName, Thread.currentThread().getThreadGroup(), defaultClassLoader ) ;
     }
 }
