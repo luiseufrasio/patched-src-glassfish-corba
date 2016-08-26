@@ -508,6 +508,10 @@ public class TransportTestBase {
         public void addWork(Work aWorkItem) {
             items.offer(aWorkItem);
         }
+        @Override
+        public void addWork(Work aWorkItem, boolean isLongRunning) {
+            items.offer(aWorkItem);
+        }
     }
 
     static abstract class TransportManagerFake implements TransportManager {

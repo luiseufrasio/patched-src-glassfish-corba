@@ -46,9 +46,16 @@ public class WorkQueueImpl implements WorkQueue {
 
     @Override
     public void addWork(Work aWorkItem) {
-        ++workItemsAdded;
-        aWorkItem.setEnqueueTime(System.currentTimeMillis());
-        threadPool.submit(aWorkItem);
+        addWork(aWorkItem, false);
+    }
+    
+    @Override
+    public void addWork(Work aWorkItem, boolean isLongRunning) {
+        if(!isLongRunning) {
+            ++workItemsAdded;
+          aWorkItem.setEnqueueTime(System.currentTimeMillis());
+        }
+        threadPool.submit(aWorkItem, isLongRunning);
     }
 
     @NameValue

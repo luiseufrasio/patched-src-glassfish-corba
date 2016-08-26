@@ -16,6 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016] [Payara Foundation and/or its affiliates]
 
 package com.sun.corba.ee.spi.threadpool;
 
@@ -23,9 +24,17 @@ public interface WorkQueue
 { 
 
     /** 
-    * This method is used to add work to the WorkQueue 
-    */ 
+     * This method is used to add work to the WorkQueue 
+     * This is used for short-running tasks only
+     * @param aWorkItem
+     */ 
     public void addWork(Work aWorkItem); 
+    /**
+     * @see addWork(Work)
+     * @param workItem
+     * @param isLongRunning specifies whether it's a long-running task
+     */
+    public void addWork(Work workItem, boolean isLongRunning);
 
     /** 
     * This method will return the name of the WorkQueue. 
