@@ -16,6 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016] [Payara Foundation and/or its affiliates]
 
 package com.sun.corba.ee.impl.ior.iiop;
 
@@ -299,7 +300,12 @@ public class IIOPProfileImpl extends IdentifiableBase implements IIOPProfile
             if (isForeignObject()) return false;
 
             final int port = proftemp.getPrimaryAddress().getPort();
-            final String host = proftemp.getPrimaryAddress().getHost() ;
+            final IIOPAddress primary = proftemp.getPrimaryAddress();
+            IIOPAddressImplLocalServer addrImpl = null;
+            if(primary instanceof IIOPAddressImplLocalServer) {
+                 addrImpl = (IIOPAddressImplLocalServer)primary;
+            }
+            final String host = addrImpl != null? addrImpl.getHostFromDelegate() : primary.getHost() ;
             final int scid = oktemp.getSubcontractId() ;
             final int sid = oktemp.getServerId() ;
             computingIsLocal( host, scid, sid, port ) ;

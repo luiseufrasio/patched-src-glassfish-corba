@@ -16,6 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016] [Payara Foundation and/or its affiliates]
 
 package com.sun.corba.ee.impl.transport;
 
@@ -175,7 +176,7 @@ public abstract class AcceptorBase
             templatePort = orb.getLegacyServerSocketManager()
                 .legacyGetPersistentServerPort(SocketInfo.IIOP_CLEAR_TEXT);
         }
-        IIOPAddress addr = IIOPFactories.makeIIOPAddress(hostname, 
+        IIOPAddress addr = IIOPFactories.makeIIOPAddressLocalServer(hostname, 
             templatePort);
         IIOPProfileTemplate iiopProfile = IIOPFactories.makeIIOPProfileTemplate(orb, 
             version, addr);
