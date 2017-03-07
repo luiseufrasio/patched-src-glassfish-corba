@@ -63,8 +63,9 @@ public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
 
     @Override
     public String toString() {
-        return String.format("IIOPProfileTemplateImpl[giopVersion=%d.%d primary=%s:%d]",
-              giopVersion.getMajor(), giopVersion.getMinor(), primary.getHost(), primary.getPort());
+        return String.format("IIOPProfileTemplateImpl[giopVersion=%d.%d primary%s=%s:%d]",
+                giopVersion.getMajor(), giopVersion.getMinor(),
+                primary instanceof IIOPAddressImplLocalServer ? "[local]" : "", primary.getHost(), primary.getPort());
     }
 
     public boolean equals( Object obj )
