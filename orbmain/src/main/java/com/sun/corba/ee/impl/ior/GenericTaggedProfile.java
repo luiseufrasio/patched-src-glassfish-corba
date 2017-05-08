@@ -16,6 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016-2017] [Payara Foundation and/or its affiliates]
 
 package com.sun.corba.ee.impl.ior;
 
@@ -82,7 +83,12 @@ public class GenericTaggedProfile extends GenericIdentifiable implements TaggedP
     {
         return false ;
     }
-    
+
+    @Override
+    public boolean isStale() {
+        return false;
+    }
+
     public org.omg.IOP.TaggedProfile getIOPProfile() 
     {
         EncapsOutputStream os = OutputStreamFactory.newEncapsOutputStream( orb ) ;

@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 1998-1999 IBM Corp. All rights reserved.
+ * Copyright (c) 2016-2017 Payara Foundation and/or its affiliates.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -609,6 +610,10 @@ public class CDRInputStream_1_0 extends CDRInputStreamBase
                         isIDLInterface, codeBase, (Class<?>) null,
                         (ClassLoader) null);
                 } catch (Exception exc) {
+                    Logger.getLogger(getClass().getName())
+                            .log(Level.FINE,
+                             String.format("Error Creating Stub Factory: ClassName = %s, sff = %s, codeBase = %s",
+                                     className, sff != null? sff.getClass().getName() : "<null>", codeBase), exc);
                     stubFactory = null;
                 }
             }

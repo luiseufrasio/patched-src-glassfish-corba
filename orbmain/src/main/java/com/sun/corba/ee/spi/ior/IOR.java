@@ -16,6 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016-2017] [Payara Foundation and/or its affiliates]
 
 package com.sun.corba.ee.spi.ior;
 
@@ -97,6 +98,12 @@ public interface IOR extends List<TaggedProfile>, Writeable, MakeImmutable
      */
     @Override
     boolean equals(Object other);
+
+    /**
+     * used for multi-homed hosts
+     * @return stale is the connection != saved
+     */
+    boolean isStale();
 
     /** Return the IORTemplate for this IOR.  This is simply a list
      * of all TaggedProfileTemplates derived from the TaggedProfiles

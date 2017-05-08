@@ -16,6 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause OR GPL-2.0 WITH
  * Classpath-exception-2.0
  */
+// Portions Copyright [2016-2017] [Payara Foundation and/or its affiliates]
 
 package com.sun.corba.ee.impl.plugin.hwlb ;
 
@@ -78,6 +79,7 @@ import com.sun.corba.ee.impl.orb.ORBDataParserImpl ;
 import com.sun.corba.ee.impl.oa.poa.BadServerIdHandler ;
 
 import com.sun.corba.ee.impl.interceptors.IORInfoImpl ;
+import com.sun.corba.ee.impl.ior.iiop.IIOPAddressImplLocalServer;
 import com.sun.corba.ee.spi.logging.ORBUtilSystemException;
 import com.sun.corba.ee.spi.trace.Subcontract;
 import org.glassfish.pfl.tf.spi.annotation.InfoMethod;
@@ -256,6 +258,11 @@ public class VirtualAddressAgentImpl
             }
 
             return isLocalCachedValue ;
+        }
+
+        @Override
+        public boolean isStale() {
+            return IIOPAddressImplLocalServer.isStale(getTaggedProfileTemplate());
         }
     }
 
