@@ -121,6 +121,7 @@
                             com.sun.corba.ee.impl.txpoa; version=1,
                             com.sun.corba.ee.impl.util; version=1,
                             org.glassfish.jndi.*; version=1
+                            com.sun.jndi.cosnaming; version=1
                         </Export-Package>
                     </instructions>
                 </configuration>
