@@ -8,3 +8,4 @@ idlj/target/
 internal-api/target/
 omgapi/target/
 test/run/
+*.iml
