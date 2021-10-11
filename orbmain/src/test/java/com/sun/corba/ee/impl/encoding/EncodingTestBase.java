@@ -66,6 +66,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static com.meterware.simplestub.Stub.createStrictStub;
 import static com.sun.corba.ee.impl.encoding.EncodingTestBase.Endian.big_endian;
@@ -336,7 +337,7 @@ public class EncodingTestBase {
             if (asynchronousAction != null) {
                 asynchronousAction.exec();
             }
-            ORBData.super.waitNanos(obj, waitNanos);
+            TimeUnit.NANOSECONDS.timedWait(obj, waitNanos);
         }
 
         @Override
