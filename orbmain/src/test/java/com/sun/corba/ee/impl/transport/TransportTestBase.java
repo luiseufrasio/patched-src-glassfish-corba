@@ -90,6 +90,7 @@ import static com.meterware.simplestub.Stub.createStrictStub;
 import static com.meterware.simplestub.Stub.createStub;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.util.concurrent.TimeUnit;
 
 public class TransportTestBase {
     private OrbFake orb = createStrictStub(OrbFake.class);
@@ -281,7 +282,7 @@ public class TransportTestBase {
 
         @Override
         public void waitNanos(Object obj, long waitNanos) throws InterruptedException {
-            ORBData.super.waitNanos(obj, waitNanos);
+            TimeUnit.NANOSECONDS.timedWait(obj, waitNanos);
         }
     }
 

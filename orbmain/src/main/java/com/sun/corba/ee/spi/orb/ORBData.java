@@ -414,9 +414,8 @@ public interface ORBData {
     @Description( "True if ORBD should not be used in this ORB instance")
     public boolean disableORBD() ;
 
-    default void waitNanos(Object obj, long waitNanos) throws InterruptedException {
-        TimeUnit.NANOSECONDS.timedWait(obj, waitNanos);
-    }
+    // Adapted from default due to java 7 source version
+    public void waitNanos(Object obj, long waitNanos) throws InterruptedException;
 }
 
 // End of file.
