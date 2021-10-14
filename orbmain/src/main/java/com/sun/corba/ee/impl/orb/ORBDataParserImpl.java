@@ -41,6 +41,7 @@
 package com.sun.corba.ee.impl.orb ;
 
 import java.net.InetAddress;
+import java.util.concurrent.TimeUnit;
 
 import org.omg.PortableInterceptor.ORBInitializer ;
 
@@ -558,6 +559,11 @@ public class ORBDataParserImpl extends ParserImplTableBase implements ORBData
 
     public boolean disableORBD() {
         return disableORBD ;
+    }
+
+    @Override
+    public void waitNanos(Object obj, long waitNanos) throws InterruptedException {
+        TimeUnit.NANOSECONDS.timedWait(obj, waitNanos);
     }
 }
 
