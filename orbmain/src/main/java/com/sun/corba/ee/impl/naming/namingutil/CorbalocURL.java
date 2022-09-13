@@ -170,7 +170,7 @@ public class CorbalocURL extends INSURLBase
                if( ipv6Port != null ) {
                    iiopEndpointInfo.setPort( Integer.parseInt( ipv6Port ));
                }
-               iiopEndpointInfo.setHost( getIPV6Host( hostandport ));
+               iiopEndpointInfo.setHost(resolveHostName(getIPV6Host(hostandport)));
                return iiopEndpointInfo;
            }
            tokenizer = new StringTokenizer( hostandport, ":" );
