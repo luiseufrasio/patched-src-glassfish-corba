@@ -38,6 +38,8 @@
  * holder.
  */
 
+// Portions Copyright [2022] [Payara Foundation and/or its affiliates]
+
 package com.sun.corba.ee.impl.naming.namingutil;
 
 import java.net.InetAddress;
@@ -199,9 +201,8 @@ public class CorbalocURL extends INSURLBase
            // 3. HostAndPort info is null
            if( tokenizer.countTokens( ) == 2 ) {
                // Case 1: There is Host and Port Info
-               iiopEndpointInfo.setHost( resolveHostName(tokenizer.nextToken( ).trim()));
-               iiopEndpointInfo.setPort( Integer.parseInt(
-                   tokenizer.nextToken( )));
+               iiopEndpointInfo.setHost(resolveHostName(tokenizer.nextToken().trim()));
+               iiopEndpointInfo.setPort(Integer.parseInt(tokenizer.nextToken()));
            } else {
                if( ( hostandport != null )
                  &&( hostandport.length() != 0 ) )
