@@ -38,9 +38,13 @@
  * holder.
  */
 
+// Portions Copyright [2022] [Payara Foundation and/or its affiliates]
+
 package com.sun.corba.ee.impl.naming.namingutil;
 
-import java.util.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.StringTokenizer;
 
 /** 
  *  The corbaloc: URL definitions from the -ORBInitDef and -ORBDefaultInitDef's
@@ -186,7 +190,7 @@ public class CorbalocURL extends INSURLBase
                if( ipv6Port != null ) {
                    iiopEndpointInfo.setPort( Integer.parseInt( ipv6Port ));
                }
-               iiopEndpointInfo.setHost( getIPV6Host( hostandport ));
+               iiopEndpointInfo.setHost(resolveHostName(getIPV6Host(hostandport)));
                return iiopEndpointInfo;
            }
            tokenizer = new StringTokenizer( hostandport, ":" );
@@ -197,9 +201,8 @@ public class CorbalocURL extends INSURLBase
            // 3. HostAndPort info is null
            if( tokenizer.countTokens( ) == 2 ) {
                // Case 1: There is Host and Port Info
-               iiopEndpointInfo.setHost( tokenizer.nextToken( ) );
-               iiopEndpointInfo.setPort( Integer.parseInt(
-                   tokenizer.nextToken( )));
+               iiopEndpointInfo.setHost(resolveHostName(tokenizer.nextToken().trim()));
+               iiopEndpointInfo.setPort(Integer.parseInt(tokenizer.nextToken()));
            } else {
                if( ( hostandport != null )
                  &&( hostandport.length() != 0 ) )
@@ -207,7 +210,7 @@ public class CorbalocURL extends INSURLBase
                    // Case 2: Only Host is specified. iiopEndpointInfo is
                    // initialized to use the default INS port, if no port is
                    // specified
-                   iiopEndpointInfo.setHost( hostandport );
+                   iiopEndpointInfo.setHost(resolveHostName(hostandport));
                }
                // Case 3: If no Host and Port info is provided then we use the
                // the default LocalHost and INSPort. iiopEndpointInfo is
@@ -221,6 +224,15 @@ public class CorbalocURL extends INSURLBase
        }
        Utility.validateGIOPVersion( iiopEndpointInfo );
        return iiopEndpointInfo;
+    }
+
+    /**
+     * This is a method to resolve hostName based on mapped ip's addresses on the environment
+     * @param hostName the hostName to be resolved
+     * @return a String with IPV6 address
+     */
+    private String resolveHostName(String hostName) throws UnknownHostException {
+        return InetAddress.getByName(hostName).getHostAddress();
     }
 
     /**
