@@ -69,7 +69,7 @@
     </modules>
 
     <properties>
-        <jdkVersion>1.7</jdkVersion>
+        <jdkVersion>1.8</jdkVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.dynamicAnalysis>false</sonar.dynamicAnalysis>
         <pfl-version>4.0.0-b008</pfl-version>
