@@ -159,17 +159,8 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>4.1.0</version>
+                    <version>2.3.7</version>
                     <extensions>true</extensions>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>manifest</goal>
-                                <goal>install</goal>
-                                <goal>deploy</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
